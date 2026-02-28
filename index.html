@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QDocs — AI-Powered Documentation Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --navy-2: #1b2e44;
+      --navy-3: #243b55;
+      --green: #00e676;
+      --green-dim: #00c853;
+      --text: #e8f0f7;
+      --muted: #8ba3bc;
+      --border: #1e3a5f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(13,27,42,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .logo span { color: var(--green); }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green); color: var(--navy) !important;
+      padding: 0.45rem 1.1rem; border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green-dim) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0,230,118,0.08) 0%, transparent 70%);
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0,230,118,0.12);
+      color: var(--green);
+      border: 1px solid rgba(0,230,118,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 1.25rem;
+    }
+    h1 em { font-style: normal; color: var(--green); }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--green); color: var(--navy);
+      padding: 0.8rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      padding: 0.8rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    .code-preview {
+      margin-top: 3.5rem;
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      color: #8be9fd;
+      overflow: hidden;
+    }
+    .code-preview .comment { color: #6272a4; }
+    .code-preview .keyword { color: var(--green); }
+    .code-preview .string { color: #f1fa8c; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      text-align: center; color: var(--green);
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800; letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      text-align: center; color: var(--muted);
+      font-size: 1.05rem; max-width: 520px;
+      margin: 0 auto 3.5rem;
+    }
+
+    /* ── FEATURES ── */
+    #features { background: var(--navy-2); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--green); transform: translateY(-4px); }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: rgba(0,230,118,0.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .feature-card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 680px; margin: 0 auto; }
+    .step {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      background: var(--navy-2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .step-num {
+      min-width: 40px; height: 40px;
+      background: var(--green); color: var(--navy);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .step p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--navy-2); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: border-color 0.25s;
+    }
+    .pricing-card.popular {
+      border-color: var(--green);
+      position: relative;
+    }
+    .popular-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: var(--navy);
+      padding: 0.2rem 1rem; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+
+    .plan-name { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .plan-price {
+      font-size: 2.8rem; font-weight: 800;
+      margin: 0.5rem 0 0.25rem;
+      letter-spacing: -1px;
+    }
+    .plan-price span { font-size: 1rem; font-weight: 500; color: var(--muted); }
+    .plan-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    .plan-features { list-style: none; margin-bottom: 2rem; }
+    .plan-features li {
+      padding: 0.45rem 0;
+      font-size: 0.92rem; color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .plan-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+    .btn-plan {
+      display: block; width: 100%;
+      padding: 0.75rem; border-radius: 8px;
+      text-align: center; text-decoration: none;
+      font-weight: 700; font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-plan-outline {
+      border: 1px solid var(--border); color: var(--text);
+    }
+    .btn-plan-outline:hover { border-color: var(--green); color: var(--green); }
+    .btn-plan-fill {
+      background: var(--green); color: var(--navy);
+    }
+    .btn-plan-fill:hover { background: var(--green-dim); }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0,230,118,0.08) 0%, transparent 70%);
+    }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: var(--muted); margin-bottom: 2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer .logo { font-size: 1.1rem; margin-bottom: 0.5rem; display: block; }
+
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Q<span>Docs</span></div>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#" class="nav-cta">Get Started</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="badge">✦ Now in Public Beta</div>
+      <h1>Documentation that <em>writes itself</em></h1>
+      <p>QDocs reads your codebase and generates beautiful, searchable docs in seconds. Powered by AI. Loved by developers.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Start for Free</a>
+        <a href="#features" class="btn-ghost">See how it works →</a>
+      </div>
+      <div class="code-preview">
+        <div class="comment"># Point QDocs at your repo</div>
+        <br>
+        <span class="keyword">$</span> qdocs init <span class="string">./my-project</span><br>
+        <span class="keyword">$</span> qdocs generate <span class="string">--format=web</span><br>
+        <br>
+        <span class="comment">✓ Scanned 142 files</span><br>
+        <span class="comment">✓ Generated 38 pages</span><br>
+        <span class="keyword">✓ Docs live at </span><span class="string">https://docs.myproject.dev</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-inner">
+      <div class="section-label">Features</div>
+      <h2>Everything your docs need</h2>
+      <p class="section-sub">QDocs handles the entire documentation lifecycle — from generation to search to versioning.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Auto-Gen from Code</h3>
+          <p>QDocs parses your source files, docstrings, types, and comments to automatically generate structured documentation — no templates, no manual writing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>AI-Powered Search</h3>
+          <p>Semantic search that understands intent, not just keywords. Ask natural language questions and get the exact section you need — instantly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔀</div>
+          <h3>Versioned Docs</h3>
+          <p>Every release gets its own doc snapshot. Users can browse v1.0, v2.3, or latest — with automated changelogs generated from your git history.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-inner">
+      <div class="section-label">How It Works</div>
+      <h2>From code to docs in 3 steps</h2>
+      <p class="section-sub">No config files. No YAML. Just point QDocs at your repo and go.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Connect your repository</h3>
+            <p>Link your GitHub, GitLab, or local repo. QDocs supports all major languages: Python, TypeScript, Go, Rust, Java, and more.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>AI analyzes your code</h3>
+            <p>Our model reads your functions, classes, types, and comments — understanding the relationships and purpose of every component.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Publish beautiful docs</h3>
+            <p>Deploy to our hosting, export as static HTML, or push to your own domain. Docs update automatically with every commit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-inner">
+      <div class="section-label">Pricing</div>
+      <h2>Simple, honest pricing</h2>
+      <p class="section-sub">Start free. Scale as you grow. No surprise charges.</p>
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">$0 <span>/ month</span></div>
+          <div class="plan-desc">Perfect for side projects and open-source.</div>
+          <ul class="plan-features">
+            <li>Up to 3 projects</li>
+            <li>5,000 lines of code</li>
+            <li>AI search included</li>
+            <li>Public hosting</li>
+            <li>Community support</li>
+          </ul>
+          <a href="#" class="btn-plan btn-plan-outline">Get Started Free</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">$29 <span>/ month</span></div>
+          <div class="plan-desc">For professional developers and small teams.</div>
+          <ul class="plan-features">
+            <li>Unlimited projects</li>
+            <li>Unlimited code size</li>
+            <li>Version history</li>
+            <li>Private docs</li>
+            <li>Custom domain</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#" class="btn-plan btn-plan-fill">Start Pro Trial</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">Custom</div>
+          <div class="plan-desc">For large teams with advanced needs.</div>
+          <ul class="plan-features">
+            <li>Everything in Pro</li>
+            <li>SSO / SAML</li>
+            <li>On-premise deploy</li>
+            <li>SLA guarantee</li>
+            <li>Dedicated support</li>
+            <li>Custom integrations</li>
+          </ul>
+          <a href="#" class="btn-plan btn-plan-outline">Contact Sales</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>Ready to ship better docs?</h2>
+      <p>Join thousands of developers who stopped writing docs manually.</p>
+      <a href="#" class="btn-primary">Get Started Free →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="logo">Q<span style="color:var(--green)">Docs</span></span>
+    <p>AI-Powered Documentation Generator &mdash; Built with ♥ and local LLMs</p>
+    <p style="margin-top:0.5rem;">© 2025 QDocs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
