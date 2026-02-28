@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QDocs — AI-Powered Documentation Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+  <title>PupWorld — The Cutest Dogs on the Internet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #0d1b2a;
-      --navy-2: #1b2e44;
-      --navy-3: #243b55;
-      --green: #00e676;
-      --green-dim: #00c853;
-      --text: #e8f0f7;
-      --muted: #8ba3bc;
-      --border: #1e3a5f;
+      --cream: #fffbf5;
+      --warm: #fff3e0;
+      --orange: #ff7043;
+      --orange-light: #ff8a65;
+      --brown: #5d4037;
+      --text: #3e2723;
+      --muted: #8d6e63;
+      --border: #ffe0b2;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--navy);
+      background: var(--cream);
       color: var(--text);
       line-height: 1.6;
     }
@@ -31,7 +31,7 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(13,27,42,0.92);
+      background: rgba(255,251,245,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
@@ -40,10 +40,10 @@
     }
 
     .logo {
-      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px;
-      color: var(--text);
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: var(--orange);
     }
-    .logo span { color: var(--green); }
 
     nav ul { list-style: none; display: flex; gap: 2rem; }
     nav ul a {
@@ -51,244 +51,188 @@
       font-size: 0.9rem; font-weight: 500;
       transition: color 0.2s;
     }
-    nav ul a:hover { color: var(--green); }
+    nav ul a:hover { color: var(--orange); }
 
     .nav-cta {
-      background: var(--green); color: var(--navy) !important;
-      padding: 0.45rem 1.1rem; border-radius: 6px;
+      background: var(--orange); color: white !important;
+      padding: 0.45rem 1.1rem; border-radius: 100px;
       font-weight: 600 !important;
-      transition: background 0.2s !important;
     }
-    .nav-cta:hover { background: var(--green-dim) !important; color: var(--navy) !important; }
+    .nav-cta:hover { background: var(--orange-light) !important; color: white !important; }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,230,118,0.08) 0%, transparent 70%);
+      padding: 7rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,112,67,0.1) 0%, transparent 65%);
     }
 
-    .hero-inner { max-width: 760px; }
+    .hero-inner { max-width: 720px; }
 
-    .badge {
-      display: inline-block;
-      background: rgba(0,230,118,0.12);
-      color: var(--green);
-      border: 1px solid rgba(0,230,118,0.3);
-      padding: 0.3rem 0.9rem;
-      border-radius: 100px;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
+    .emoji-big { font-size: 4rem; margin-bottom: 1rem; display: block; animation: bounce 1.8s infinite; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
 
     h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      color: var(--orange);
+      line-height: 1.2;
       margin-bottom: 1.25rem;
     }
-    h1 em { font-style: normal; color: var(--green); }
 
     .hero p {
       font-size: 1.15rem;
       color: var(--muted);
-      max-width: 540px;
+      max-width: 500px;
       margin: 0 auto 2.5rem;
     }
 
     .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     .btn-primary {
-      background: var(--green); color: var(--navy);
-      padding: 0.8rem 2rem; border-radius: 8px;
+      background: var(--orange); color: white;
+      padding: 0.85rem 2rem; border-radius: 100px;
       font-weight: 700; font-size: 1rem;
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
       display: inline-block;
     }
-    .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
 
     .btn-ghost {
-      background: transparent; color: var(--text);
-      padding: 0.8rem 2rem; border-radius: 8px;
+      background: transparent; color: var(--brown);
+      padding: 0.85rem 2rem; border-radius: 100px;
       font-weight: 600; font-size: 1rem;
-      text-decoration: none; border: 1px solid var(--border);
+      text-decoration: none; border: 2px solid var(--border);
       transition: border-color 0.2s, transform 0.15s;
       display: inline-block;
     }
-    .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
 
-    .code-preview {
-      margin-top: 3.5rem;
-      background: var(--navy-2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: left;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.88rem;
-      color: #8be9fd;
-      overflow: hidden;
-    }
-    .code-preview .comment { color: #6272a4; }
-    .code-preview .keyword { color: var(--green); }
-    .code-preview .string { color: #f1fa8c; }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; }
+    /* ── DOG CARDS ── */
+    #dogs { padding: 5rem 2rem; background: var(--warm); }
     .section-inner { max-width: 1100px; margin: 0 auto; }
 
-    .section-label {
-      text-align: center; color: var(--green);
-      font-size: 0.8rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
     h2 {
+      font-family: 'Pacifico', cursive;
       text-align: center;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 800; letter-spacing: -0.5px;
-      margin-bottom: 1rem;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--orange);
+      margin-bottom: 0.75rem;
     }
     .section-sub {
       text-align: center; color: var(--muted);
-      font-size: 1.05rem; max-width: 520px;
-      margin: 0 auto 3.5rem;
+      font-size: 1rem; margin-bottom: 3rem;
     }
 
-    /* ── FEATURES ── */
-    #features { background: var(--navy-2); }
-
-    .features-grid {
+    .dogs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
-    .feature-card {
-      background: var(--navy);
+    .dog-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .dog-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(255,112,67,0.15); }
+
+    .dog-img {
+      width: 100%; height: 220px;
+      object-fit: cover;
+      background: var(--warm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+    }
+
+    .dog-info { padding: 1.25rem; }
+    .dog-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.2rem; }
+    .dog-breed { color: var(--muted); font-size: 0.88rem; margin-bottom: 0.75rem; }
+    .dog-traits { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .trait {
+      background: var(--warm);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: border-color 0.25s, transform 0.2s;
-    }
-    .feature-card:hover { border-color: var(--green); transform: translateY(-4px); }
-
-    .feature-icon {
-      width: 48px; height: 48px;
-      background: rgba(0,230,118,0.12);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 1.25rem;
+      border-radius: 100px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.78rem; color: var(--brown); font-weight: 600;
     }
 
-    .feature-card h3 {
-      font-size: 1.15rem; font-weight: 700;
-      margin-bottom: 0.6rem;
-    }
-    .feature-card p { color: var(--muted); font-size: 0.95rem; }
+    /* ── FACTS ── */
+    #facts { padding: 5rem 2rem; }
 
-    /* ── HOW IT WORKS ── */
-    .steps { display: flex; flex-direction: column; gap: 1.5rem; max-width: 680px; margin: 0 auto; }
-    .step {
-      display: flex; gap: 1.5rem; align-items: flex-start;
-      background: var(--navy-2); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem;
-    }
-    .step-num {
-      min-width: 40px; height: 40px;
-      background: var(--green); color: var(--navy);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1rem;
-    }
-    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .step p { color: var(--muted); font-size: 0.9rem; }
-
-    /* ── PRICING ── */
-    #pricing { background: var(--navy-2); }
-
-    .pricing-grid {
+    .facts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; align-items: start;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
     }
 
-    .pricing-card {
-      background: var(--navy);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+    .fact-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 16px;
       padding: 2rem;
-      transition: border-color 0.25s;
+      text-align: center;
+      transition: border-color 0.2s;
     }
-    .pricing-card.popular {
-      border-color: var(--green);
-      position: relative;
-    }
-    .popular-badge {
-      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-      background: var(--green); color: var(--navy);
-      padding: 0.2rem 1rem; border-radius: 100px;
-      font-size: 0.75rem; font-weight: 700;
-    }
+    .fact-card:hover { border-color: var(--orange); }
+    .fact-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+    .fact-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .fact-card p { color: var(--muted); font-size: 0.9rem; }
 
-    .plan-name { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-    .plan-price {
-      font-size: 2.8rem; font-weight: 800;
-      margin: 0.5rem 0 0.25rem;
-      letter-spacing: -1px;
+    /* ── QUIZ ── */
+    #quiz { padding: 5rem 2rem; background: var(--warm); text-align: center; }
+    .quiz-box {
+      max-width: 560px; margin: 0 auto;
+      background: white; border: 2px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
     }
-    .plan-price span { font-size: 1rem; font-weight: 500; color: var(--muted); }
-    .plan-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
-
-    .plan-features { list-style: none; margin-bottom: 2rem; }
-    .plan-features li {
-      padding: 0.45rem 0;
-      font-size: 0.92rem; color: var(--muted);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 0.6rem;
+    .quiz-box p { color: var(--muted); margin-bottom: 2rem; }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; }
+    .quiz-btn {
+      background: var(--warm); border: 2px solid var(--border);
+      border-radius: 12px; padding: 0.9rem 1.5rem;
+      font-size: 1rem; font-weight: 600; color: var(--text);
+      cursor: pointer; transition: all 0.2s; text-align: left;
     }
-    .plan-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
-
-    .btn-plan {
-      display: block; width: 100%;
-      padding: 0.75rem; border-radius: 8px;
-      text-align: center; text-decoration: none;
-      font-weight: 700; font-size: 0.95rem;
-      transition: all 0.2s;
-    }
-    .btn-plan-outline {
-      border: 1px solid var(--border); color: var(--text);
-    }
-    .btn-plan-outline:hover { border-color: var(--green); color: var(--green); }
-    .btn-plan-fill {
-      background: var(--green); color: var(--navy);
-    }
-    .btn-plan-fill:hover { background: var(--green-dim); }
+    .quiz-btn:hover { border-color: var(--orange); color: var(--orange); background: #fff3e0; }
 
     /* ── CTA ── */
     .cta-section {
-      text-align: center;
-      background: radial-gradient(ellipse at 50% 50%, rgba(0,230,118,0.08) 0%, transparent 70%);
+      padding: 5rem 2rem; text-align: center;
+      background: var(--orange);
     }
-    .cta-section h2 { margin-bottom: 1rem; }
-    .cta-section p { color: var(--muted); margin-bottom: 2rem; }
+    .cta-section h2 { color: white; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1.05rem; }
+    .btn-white {
+      background: white; color: var(--orange);
+      padding: 0.85rem 2.5rem; border-radius: 100px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; display: inline-block;
+      transition: transform 0.15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--navy-2);
+      background: var(--warm);
       border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.88rem;
+      padding: 2rem; text-align: center;
+      color: var(--muted); font-size: 0.88rem;
     }
-    footer .logo { font-size: 1.1rem; margin-bottom: 0.5rem; display: block; }
+    .footer-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.3rem; color: var(--orange);
+      display: block; margin-bottom: 0.5rem;
+    }
 
     @media (max-width: 640px) {
       nav ul { display: none; }
@@ -297,151 +241,169 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <div class="logo">Q<span>Docs</span></div>
+    <div class="logo">🐾 PupWorld</div>
     <ul>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#" class="nav-cta">Get Started</a></li>
+      <li><a href="#dogs">Dogs</a></li>
+      <li><a href="#facts">Fun Facts</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#" class="nav-cta">Adopt 🐶</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="badge">✦ Now in Public Beta</div>
-      <h1>Documentation that <em>writes itself</em></h1>
-      <p>QDocs reads your codebase and generates beautiful, searchable docs in seconds. Powered by AI. Loved by developers.</p>
+      <span class="emoji-big">🐶</span>
+      <h1>The Internet's Cutest Dogs</h1>
+      <p>Your daily dose of waggy tails, floppy ears, and unconditional love. Because the world is better with dogs in it.</p>
       <div class="hero-btns">
-        <a href="#" class="btn-primary">Start for Free</a>
-        <a href="#features" class="btn-ghost">See how it works →</a>
-      </div>
-      <div class="code-preview">
-        <div class="comment"># Point QDocs at your repo</div>
-        <br>
-        <span class="keyword">$</span> qdocs init <span class="string">./my-project</span><br>
-        <span class="keyword">$</span> qdocs generate <span class="string">--format=web</span><br>
-        <br>
-        <span class="comment">✓ Scanned 142 files</span><br>
-        <span class="comment">✓ Generated 38 pages</span><br>
-        <span class="keyword">✓ Docs live at </span><span class="string">https://docs.myproject.dev</span>
+        <a href="#dogs" class="btn-primary">Meet the Dogs 🐾</a>
+        <a href="#quiz" class="btn-ghost">Take the Quiz 🎯</a>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features">
+  <!-- DOG CARDS -->
+  <section id="dogs">
     <div class="section-inner">
-      <div class="section-label">Features</div>
-      <h2>Everything your docs need</h2>
-      <p class="section-sub">QDocs handles the entire documentation lifecycle — from generation to search to versioning.</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Auto-Gen from Code</h3>
-          <p>QDocs parses your source files, docstrings, types, and comments to automatically generate structured documentation — no templates, no manual writing.</p>
+      <h2>Today's Featured Pups</h2>
+      <p class="section-sub">Hand-picked fluffballs guaranteed to make your day better.</p>
+      <div class="dogs-grid">
+
+        <div class="dog-card">
+          <div class="dog-img">🦮</div>
+          <div class="dog-info">
+            <div class="dog-name">Biscuit</div>
+            <div class="dog-breed">Golden Retriever · 3 years old</div>
+            <div class="dog-traits">
+              <span class="trait">🎾 Fetch fanatic</span>
+              <span class="trait">🛁 Bath hater</span>
+              <span class="trait">😴 Nap champion</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔍</div>
-          <h3>AI-Powered Search</h3>
-          <p>Semantic search that understands intent, not just keywords. Ask natural language questions and get the exact section you need — instantly.</p>
+
+        <div class="dog-card">
+          <div class="dog-img">🐩</div>
+          <div class="dog-info">
+            <div class="dog-name">Duchess</div>
+            <div class="dog-breed">Toy Poodle · 5 years old</div>
+            <div class="dog-traits">
+              <span class="trait">🎀 Bow collector</span>
+              <span class="trait">🧠 Super smart</span>
+              <span class="trait">💅 Very fancy</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔀</div>
-          <h3>Versioned Docs</h3>
-          <p>Every release gets its own doc snapshot. Users can browse v1.0, v2.3, or latest — with automated changelogs generated from your git history.</p>
+
+        <div class="dog-card">
+          <div class="dog-img">🐕</div>
+          <div class="dog-info">
+            <div class="dog-name">Tank</div>
+            <div class="dog-breed">French Bulldog · 2 years old</div>
+            <div class="dog-traits">
+              <span class="trait">😤 Loud snorer</span>
+              <span class="trait">🥐 Croissant shape</span>
+              <span class="trait">🏆 Best boy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dog-card">
+          <div class="dog-img">🐕‍🦺</div>
+          <div class="dog-info">
+            <div class="dog-name">Maple</div>
+            <div class="dog-breed">Bernese Mountain Dog · 1 year old</div>
+            <div class="dog-traits">
+              <span class="trait">❄️ Loves snow</span>
+              <span class="trait">🤗 Super cuddly</span>
+              <span class="trait">🌲 Trail buddy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dog-card">
+          <div class="dog-img">🦴</div>
+          <div class="dog-info">
+            <div class="dog-name">Pretzel</div>
+            <div class="dog-breed">Dachshund · 4 years old</div>
+            <div class="dog-traits">
+              <span class="trait">🌭 Hot dog vibes</span>
+              <span class="trait">⚡ Very fast</span>
+              <span class="trait">🛋️ Couch potato</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dog-card">
+          <div class="dog-img">🐾</div>
+          <div class="dog-info">
+            <div class="dog-name">Cloud</div>
+            <div class="dog-breed">Samoyed · 2 years old</div>
+            <div class="dog-traits">
+              <span class="trait">☁️ Fluffy AF</span>
+              <span class="trait">😁 Always smiling</span>
+              <span class="trait">🌨️ Snow dog</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN FACTS -->
+  <section id="facts">
+    <div class="section-inner">
+      <h2>Did You Know?</h2>
+      <p class="section-sub">Fascinating dog facts to impress your friends (and your dog).</p>
+      <div class="facts-grid">
+        <div class="fact-card">
+          <span class="fact-emoji">👃</span>
+          <h3>Nose Prints are Unique</h3>
+          <p>Just like human fingerprints, every dog's nose print is completely unique. No two are alike!</p>
+        </div>
+        <div class="fact-card">
+          <span class="fact-emoji">💤</span>
+          <h3>Dogs Dream Too</h3>
+          <p>Dogs have REM sleep cycles just like humans. Those little leg twitches? They're chasing squirrels in their dreams.</p>
+        </div>
+        <div class="fact-card">
+          <span class="fact-emoji">❤️</span>
+          <h3>Synchronized Heartbeats</h3>
+          <p>Studies show that when you pet a dog, both your heartbeat and theirs slow down and sync up. Pure magic.</p>
+        </div>
+        <div class="fact-card">
+          <span class="fact-emoji">🌡️</span>
+          <h3>Sweating Through Paws</h3>
+          <p>Dogs only sweat through their paw pads. They cool down by panting — up to 300 times per minute!</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how">
+  <!-- QUIZ -->
+  <section id="quiz">
     <div class="section-inner">
-      <div class="section-label">How It Works</div>
-      <h2>From code to docs in 3 steps</h2>
-      <p class="section-sub">No config files. No YAML. Just point QDocs at your repo and go.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div>
-            <h3>Connect your repository</h3>
-            <p>Link your GitHub, GitLab, or local repo. QDocs supports all major languages: Python, TypeScript, Go, Rust, Java, and more.</p>
-          </div>
+      <h2>Which Dog Are You?</h2>
+      <p class="section-sub">Answer one question to find your spirit pup.</p>
+      <div class="quiz-box">
+        <p>🤔 <strong>It's Saturday morning. What are you doing?</strong></p>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="this.textContent='🦮 You\'re a Golden Retriever! Enthusiastic, warm, and everyone\'s best friend.'; this.style.borderColor='#ff7043'; this.style.background='#fff3e0';">
+            🛏️ Still in bed, obviously
+          </button>
+          <button class="quiz-btn" onclick="this.textContent='🐕 You\'re a French Bulldog! Stubborn, loveable, and full of personality.'; this.style.borderColor='#ff7043'; this.style.background='#fff3e0';">
+            🏃 Out for a run at 6am
+          </button>
+          <button class="quiz-btn" onclick="this.textContent='🐩 You\'re a Poodle! Clever, stylish, and always two steps ahead.'; this.style.borderColor='#ff7043'; this.style.background='#fff3e0';">
+            📚 Reading with coffee
+          </button>
+          <button class="quiz-btn" onclick="this.textContent='🐕‍🦺 You\'re a Bernese! Big-hearted, chill, and loves the great outdoors.'; this.style.borderColor='#ff7043'; this.style.background='#fff3e0';">
+            🌲 Hiking in the woods
+          </button>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div>
-            <h3>AI analyzes your code</h3>
-            <p>Our model reads your functions, classes, types, and comments — understanding the relationships and purpose of every component.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div>
-            <h3>Publish beautiful docs</h3>
-            <p>Deploy to our hosting, export as static HTML, or push to your own domain. Docs update automatically with every commit.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing">
-    <div class="section-inner">
-      <div class="section-label">Pricing</div>
-      <h2>Simple, honest pricing</h2>
-      <p class="section-sub">Start free. Scale as you grow. No surprise charges.</p>
-      <div class="pricing-grid">
-
-        <div class="pricing-card">
-          <div class="plan-name">Free</div>
-          <div class="plan-price">$0 <span>/ month</span></div>
-          <div class="plan-desc">Perfect for side projects and open-source.</div>
-          <ul class="plan-features">
-            <li>Up to 3 projects</li>
-            <li>5,000 lines of code</li>
-            <li>AI search included</li>
-            <li>Public hosting</li>
-            <li>Community support</li>
-          </ul>
-          <a href="#" class="btn-plan btn-plan-outline">Get Started Free</a>
-        </div>
-
-        <div class="pricing-card popular">
-          <div class="popular-badge">Most Popular</div>
-          <div class="plan-name">Pro</div>
-          <div class="plan-price">$29 <span>/ month</span></div>
-          <div class="plan-desc">For professional developers and small teams.</div>
-          <ul class="plan-features">
-            <li>Unlimited projects</li>
-            <li>Unlimited code size</li>
-            <li>Version history</li>
-            <li>Private docs</li>
-            <li>Custom domain</li>
-            <li>Priority support</li>
-          </ul>
-          <a href="#" class="btn-plan btn-plan-fill">Start Pro Trial</a>
-        </div>
-
-        <div class="pricing-card">
-          <div class="plan-name">Enterprise</div>
-          <div class="plan-price">Custom</div>
-          <div class="plan-desc">For large teams with advanced needs.</div>
-          <ul class="plan-features">
-            <li>Everything in Pro</li>
-            <li>SSO / SAML</li>
-            <li>On-premise deploy</li>
-            <li>SLA guarantee</li>
-            <li>Dedicated support</li>
-            <li>Custom integrations</li>
-          </ul>
-          <a href="#" class="btn-plan btn-plan-outline">Contact Sales</a>
-        </div>
-
       </div>
     </div>
   </section>
@@ -449,17 +411,17 @@
   <!-- CTA -->
   <section class="cta-section">
     <div class="section-inner">
-      <h2>Ready to ship better docs?</h2>
-      <p>Join thousands of developers who stopped writing docs manually.</p>
-      <a href="#" class="btn-primary">Get Started Free →</a>
+      <h2>Give a Dog a Forever Home</h2>
+      <p>Millions of dogs are waiting for someone just like you. Adopt, don't shop.</p>
+      <a href="https://www.petfinder.com" target="_blank" class="btn-white">Find Your Match 🐾</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span class="logo">Q<span style="color:var(--green)">Docs</span></span>
-    <p>AI-Powered Documentation Generator &mdash; Built with ♥ and local LLMs</p>
-    <p style="margin-top:0.5rem;">© 2025 QDocs. All rights reserved.</p>
+    <span class="footer-logo">🐾 PupWorld</span>
+    <p>Made with 🧡 for dog lovers everywhere</p>
+    <p style="margin-top:0.4rem;">No dogs were harmed in the making of this website. Several were bribed with treats.</p>
   </footer>
 
 </body>
